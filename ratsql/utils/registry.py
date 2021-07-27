@@ -38,6 +38,11 @@ def construct(kind, config, unused_keys=(), **kwargs):
 
 def instantiate(callable, config, unused_keys=(), **kwargs):
     merged = {**config, **kwargs}
+    from ratsql.datasets.spider import SpiderDataset
+    if callable == SpiderDataset:
+        merged.pop('name')
+        return callable(**merged)
+
     signature = inspect.signature(callable)
     for name, param in signature.parameters.items():
         if param.kind in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.VAR_POSITIONAL):

@@ -129,3 +129,7 @@ logdir/
 ie_dirs/
 dumps/
 att_dirs/
+
+# dataset
+data/
+ratsql/datasets/WikiSQL
